@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script>
+      let nom=document.getElementById('nom');
+      let residence=document.getElementById('residence');
+      let email=document.getElementById('email');
+      let age=document.getElementById('age');
+      let chek=document.querySelector('chek');
+      let d1=document.getElementById('d1');
+let nomRX=/[a-z]/;
+let emailRX=/(\w)+(.com)|(.ma)/;
+let cp=0;
+let chek1=0;
+let chek2=0;
+let chek3=0;
+let br=document.createElement('br');
+let language;
+valider=()=>{
+d1.style.color="red";
+language=[];
+d1.innerText="";
+if(nomRX.test(nom.value)){
+d1.innerText='le nom inserer est incorrect';
+}
+if(emailRX.test(email.value)){
+d1.appendChild(br);
+d1.innerText=d1.innerText+'lemail est incorrect';
+
+}
+if(age.value<18){
+d1.appendChild(br);
+d1.innerText=d1.innerText+'age doit etre plus de 18';
+}
+if(chek[0].checked){
+chek1=1;
+}
+else {chek1=0;}
+if(chek[1].checked){
+chek2=1;
+}
+else {chek2=0;}
+if(chek[2].checked){
+chek3=1;
+}
+else {chek3=0;}
+cp=chek1+chek2+check3;
+if(cp<2){
+   d1.appendChild(br);
+   d1.innerText=d1.innerText+'il faut choisir deux langues au minimum';
+}
+check.forEach(element => {
+   if(element.checked){
+      language.push(element.name)
+   }
+});
+if(d1.innerText==""){
+   d1.style.color='green';
+   d1.innerText='nom';$(nom.value),'residence';$(residence.value),"email";$(email.value),'age';($age.value)
+   'language';$(language)
+}
+let x={
+nom:nom.value,
+residence:residence.value,
+email:email.value,
+age:age.value,
+langues:language.value
+}
+localStorage.setItem("user1",JSON.stringify(x));
+usr=JSON.parse(localStorage.setItem("user1"));
+console.log(usr);
+
+aff=document.querySelector('.aff');
+aff.innerHTML='<h4>nom:${usr.nom}</h4><h4>residence:${usr.residence}</h4><h4>email:${usr.email}</h4><h4>age:${usr.age}</h4><h4>langues:${usr.language}</h4>';
+
+}
+   </script>
+</head>
+<body>
+   <form action="">
+<label for="nom">nom</label><input type="text" name="nom" id="nom" required="required"> (*)</input>
+<br>
+<label for="residence">residence</label><input type="text" name="residence" id="residence" required="required"> (*)</input>
+<label for="email">email</label><input type="email" name="email" id="email" required="required"> (*)</input>
+<label for="age"></label><input type="number" name="age" id="age" required="required"> (*)</input>
+<br>
+<label for="langues">langue parler:</label>
+francais:<input class="chbx" type="checkbox" name="francais" id="fr" value="fr">
+arabic:<input class="chbx" type="checkbox" name="arabic" id="ar" value="ar">
+anglais:<input class="chbx" type="checkbox" name="anglais" id="ang" value="ang">
+<br>
+<label for="profession">profession</label>
+<select name="profession" id="pro">
+<option value="0">selectionner une option</option>
+<option value="1">webDev</option>
+<option value="2">gameDev</option>
+</select>
+<br>
+<button onclick="valider()">envoyer</button>
+<div style="color:rgb(255, 4, 4)" id="d1"></div>
+   </form>
+   <div class="aff"></div>
+</body>
+</html>

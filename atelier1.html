@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+    .C1{background-color: red;
+    width: 50%;
+    display: none;
+
+    }
+    span{
+       color: red;
+    }
+#d1{color:red ;
+border: 1px solid red;
+}
+   </style>
+   
+<script>
+  function AfficherCacher(){
+let d2=document.querySelector("#d2");
+let r1=document.querySelector("#r1");
+let r2=document.querySelector("#r2");
+if(r1.checked==true)
+{d2.style.display="block";}
+if(r1.checked==false)
+{d2.style.display="none";}
+  }
+   
+   function valider(){
+
+
+
+
+      let d1=document.querySelector("#d1");
+      d1.innerHTML="";
+      let n1=document.querySelector("#n1");
+      let p1=document.querySelector("#p1");    
+      let s1=document.querySelector("#s1");
+      let r1=document.querySelector("#r1");
+      let r2=document.querySelector("#r2");
+      if(n1.value==""){d1.innerHTML="nom obligatoire";return;}
+      if(p1.value==""){d1.innerHTML="password obligatoire";return;}
+      let rg=/^[a-z]+$/g;
+      if(rg.test(n1.value)==false){
+         d1.innerHTML="le nom nom ne doit pas contenir des chiffre ou de symboles";
+         return;}
+         if(r1.checked==true){
+         let i=s1.selectedIndex;
+         if(i==0){
+            d1.innerHTML="choisir une ville obligatoire";
+            return;}}
+         
+            let x="nom="+n1.value;
+            x+="password="+p1.value;
+            if(r1.checked==true){
+               let i=s1.selectedIndex;
+            x+="ville shoisi est:"+s1.options[i].text;
+            
+            d1.innerHTML=x;
+            d1.style.color="green";
+
+            }
+         
+
+
+      }
+
+
+
+   
+   
+   </script>
+</head>
+<body>
+<form action="pagesuivante" method="POST">
+<label for="">nom</label> <input type="text" name="" id="n1">
+<span>(*)</span>
+<br>
+<label for="">password</label> <input type="password" name="" id="p1">
+<span>(*)</span>
+<div></div>
+<label for="">afficher div</label>
+<input type="radio" name="g1" id="r1" onchange="AfficherCacher()">oui
+<input type="radio" name="g1" id="r2" onchange="AfficherCacher()">non
+<div class="C1" id="d2">
+   <label>choisir une ville</label>
+   <select id="s1">
+   <option value="0">selectionner une ville</option>
+   <option value="1">Fes</option>
+   <option value="2">Marrakech</option>
+   <option value="3">Casa</option>
+   </select>
+</div>
+<div id="d1">si erreur</div>
+
+
+
+
+
+<input type="button" value="se connecter" onclick="valider()"/>
+<input type="reset" value="annuler"/>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
